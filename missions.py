@@ -1,5 +1,4 @@
 from reportlab.pdfgen import canvas
-#from reportlab.lib.pagesizes import landscape
 from reportlab.lib.units import mm
 
 operators = [
@@ -33,26 +32,23 @@ def check_miss(operators, mission_list):
     missioni_migliori = {}
     x = 0
 
-    # ciclo su ogni operatore
     for operatore in operators:
-        # inizializza la missione migliore come None e il punteggio massimo come -infinito
+       
         missione_migliore = None
         punteggio_massimo = float('-inf')
 
-        # ciclo su ogni missione per l'operatore corrente
         for missione in mission_list[x:]:
             punteggio = operatore[missione]
-            # se il punteggio della missione corrente è più alto del punteggio massimo trovato finora, aggiorna i valori
+           
             if punteggio > punteggio_massimo:
                 missione_migliore = missione
                 punteggio_massimo = punteggio
-            # se il punteggio della missione corrente è uguale al punteggio massimo trovato finora, confronta gli indici delle missioni
+            
             elif punteggio == punteggio_massimo:
                 if mission_list.index(missione) > mission_list.index(missione_migliore):
                     missione_migliore = missione
                     punteggio_massimo = punteggio
 
-        # aggiungi la missione migliore per l'operatore corrente al dizionario
         missioni_migliori[operatore['nome_operatore']] = missione_migliore
 
     return missioni_migliori
