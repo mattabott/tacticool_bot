@@ -25,9 +25,7 @@ intents.members = True
 
 bot = commands.Bot(command_prefix='!', intents=intents, help_command=None)
 
-#Posizionamento missioni
 @bot.command()
-#@commands.has_any_role('DISCORD MOD', 'Dio', 'MANAGEMENT ENG', 'MANAGEMENT ITA')
 async def miss(ctx):
 
     mission_list = []
@@ -61,7 +59,7 @@ async def miss(ctx):
         pdf_list.append(data_format)
         pdf_list.append('')
 
-        await interaction.response.edit_message(view=None)#content='Missions: \n'
+        await interaction.response.edit_message(view=None)
 
         missioni_migliori = check_miss(operators, mission_list)
         new_dict = {}
@@ -98,7 +96,6 @@ async def miss(ctx):
                         op_list.append(key)
             check_dict = tmp_dict
 
-            # unisco le due liste in un dizionario
             no_miss_dict = dict(zip(op_list, miss_list))
 
             result = ""
@@ -116,7 +113,7 @@ async def miss(ctx):
 
     
         file_name = "missions.pdf"
-        #print(pdf_list)
+       
         create_custom_sized_pdf(file_name, pdf_list)
         images = convert_from_path(file_name)
         image_path = 'missions.png'
